@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Project Overview Dashboard</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<!-- Material Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#137fec",
+              "background-light": "#f6f7f8",
+              "background-dark": "#101922",
+            },
+            fontFamily: {
+              "display": ["Inter", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 antialiased overflow-hidden">
+<div class="flex h-screen w-full overflow-hidden">
+<!-- Sidebar -->
+<div class="w-64 flex-shrink-0 border-r border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 flex flex-col justify-between hidden md:flex">
+<div class="flex flex-col gap-4 p-4 h-full">
+<!-- Agency Header -->
+<div class="flex gap-3 items-center pb-4 border-b border-slate-100 dark:border-slate-800">
+<div class="bg-center bg-no-repeat bg-cover rounded-lg size-10 shadow-sm" data-alt="Abstract blue geometric logo" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBgNszkDXZEdVpm7XIdIiZxXhDD_VBUMW9J6tRU2C-HY-C-JQkzDg2Cf0xCBgRZvcdXBQhaLwj7WPdU-dWHuhZHa-b2dX_4IEQ05uxcSSuw3c91-YbIquH8kPcwtMIbTTSZbssw1mNgZd9yqlGauaewj1Ls7AlzwfrO-MWymTj4Js5mkMkV8QlrURKH5ENmvkh6SFZluAr5OGCQcWCXchP_f9PgzEqtBOFzIeN_BpDbS4ZyoHWsvk0AM2Jpu9U6WG0oFk2CuI6LHTk");'></div>
+<div class="flex flex-col">
+<h1 class="text-slate-900 dark:text-white text-base font-bold leading-normal">Acme Agency</h1>
+<p class="text-slate-500 dark:text-slate-400 text-xs font-normal leading-normal">Pro Plan</p>
+</div>
+</div>
+<!-- Navigation -->
+<div class="flex flex-col gap-1 overflow-y-auto">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg bg-primary/10 text-primary dark:bg-primary/20" href="#">
+<span class="material-symbols-outlined text-[20px]">dashboard</span>
+<p class="text-sm font-medium leading-normal">Overview</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">check_circle</span>
+<p class="text-sm font-medium leading-normal">Tasks</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">folder</span>
+<p class="text-sm font-medium leading-normal">Files</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">group</span>
+<p class="text-sm font-medium leading-normal">Team</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">calendar_month</span>
+<p class="text-sm font-medium leading-normal">Calendar</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">settings</span>
+<p class="text-sm font-medium leading-normal">Settings</p>
+</a>
+</div>
+</div>
+<div class="p-4 border-t border-slate-100 dark:border-slate-800">
+<button class="flex w-full cursor-pointer items-center justify-center gap-2 overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold shadow-sm hover:bg-blue-600 transition-colors">
+<span class="material-symbols-outlined text-[18px]">add</span>
+<span class="truncate">New Project</span>
+</button>
+</div>
+</div>
+<!-- Main Content -->
+<div class="flex-1 flex flex-col h-full overflow-y-auto bg-background-light dark:bg-background-dark">
+<!-- Header -->
+<header class="bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 sticky top-0 z-20">
+<div class="px-6 py-5 flex flex-wrap items-center justify-between gap-4">
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-3">
+<h2 class="text-slate-900 dark:text-white text-2xl font-bold leading-tight">Q3 Marketing Campaign</h2>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400 border border-green-200 dark:border-green-800">
+<span class="size-1.5 rounded-full bg-green-600 dark:bg-green-400"></span>
+                                Active
+                            </span>
+</div>
+<div class="flex items-center gap-2 text-slate-500 dark:text-slate-400 text-sm">
+<span>Project ID: #8832</span>
+<span class="size-1 rounded-full bg-slate-300 dark:bg-slate-600"></span>
+<span>Client: TechFlow Inc.</span>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<div class="hidden sm:flex -space-x-2 mr-2">
+<img alt="Team member portrait" class="inline-block size-8 rounded-full ring-2 ring-white dark:ring-slate-900 object-cover" data-alt="Woman with glasses portrait" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBH7-yHci1d3zEgY7MySEkQ1regJpNCLtGKZE67Uz9hA2nQAM0jIhpVpGyHEfRpgx-abdgoOAZxkowyN4PotW6dYSRzcYWfyjQiQzUv0xvIBJnhY8OVdKl2Y58FUHyWhRCDzru4tHIIDulDG1zTKCHaCb4wGuut9o7Z_mnxPcWaec_BNcd2MBEGSohHIavk8UDuAylFZVzhYq-KaxL_gwtozDvX9WVhpLKTZAmKr5i1OK6xRT0cbzsEPvmfi38BpR1RQIilQX1rW5Y"/>
+<img alt="Team member portrait" class="inline-block size-8 rounded-full ring-2 ring-white dark:ring-slate-900 object-cover" data-alt="Man with beard portrait" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAbni19Zlqg8e3Qs43LBZi5XrDQE1iKFBtlFGxYePDtWkRaYdYFDetp7WioQe9ggA4AzFJOPnmXAyKDOoI1n-J0qLJGkeLa8uxl6K09iVGSFCO-GpXsRBcXq44xyj_7c0yAterX0biyjQnL1CFAyY-MKBSX3ckbrqtoDGxfz4ZnyKHrAOulNEE1azBFugdaz0Vx3LtQC13mVl7IP1XNunZRk6fJFzWX1tCOOvrHl8FbviXiI2sxAwt2xGVUOCGWzewWAf9uOW4AOLM"/>
+<img alt="Team member portrait" class="inline-block size-8 rounded-full ring-2 ring-white dark:ring-slate-900 object-cover" data-alt="Woman smiling portrait" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAG1p7wXgR_kFuc-BCXzNAw55P8ofQhUIffak2aVZiqLuB7wWvdl4VvbtQ2a7I07sYSX4M90Jdn-DM7KP3xS-Nk9YsUM41d6eYUBcoxN7aKIsYThQ72UuGe4POJVgmh-bs-hV_KPW5bX-wd6t0KpBTikpmJwI1CwkUwoAhxP-9_baJyMe_YknmtJikri8hInxT-fXBOf-tUdEEzeX54GLJDJZJ1Y_gUg9lYiKVT_qruXf9ViqidgrkeyuIBA668UIBim3mIJIVYj60"/>
+<button class="inline-flex size-8 items-center justify-center rounded-full ring-2 ring-white dark:ring-slate-900 bg-slate-100 dark:bg-slate-800 text-xs font-medium text-slate-500 dark:text-slate-400">
+                                 +3
+                             </button>
+</div>
+<button class="flex cursor-pointer items-center justify-center rounded-lg h-9 px-4 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 text-sm font-medium hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors">
+                            Edit Project
+                        </button>
+<button class="flex cursor-pointer items-center justify-center gap-2 rounded-lg h-9 px-4 bg-primary text-white text-sm font-bold hover:bg-blue-600 transition-colors shadow-sm">
+<span class="material-symbols-outlined text-[18px]">add_task</span>
+<span>Add Task</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Dashboard Content -->
+<main class="p-6 max-w-[1400px] w-full mx-auto flex flex-col gap-6">
+<!-- Stats Row -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+<!-- Stat Card 1 -->
+<div class="bg-white dark:bg-slate-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col gap-1">
+<div class="flex justify-between items-start">
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium">To Do</p>
+<span class="p-1.5 rounded-md bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400">
+<span class="material-symbols-outlined text-[20px]">list_alt</span>
+</span>
+</div>
+<div class="flex items-end gap-2 mt-2">
+<p class="text-slate-900 dark:text-white text-2xl font-bold leading-none">12</p>
+<p class="text-slate-400 dark:text-slate-500 text-xs font-medium mb-0.5">tasks left</p>
+</div>
+</div>
+<!-- Stat Card 2 -->
+<div class="bg-white dark:bg-slate-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col gap-1">
+<div class="flex justify-between items-start">
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium">In Progress</p>
+<span class="p-1.5 rounded-md bg-amber-50 dark:bg-amber-900/20 text-amber-600 dark:text-amber-400">
+<span class="material-symbols-outlined text-[20px]">timelapse</span>
+</span>
+</div>
+<div class="flex items-end gap-2 mt-2">
+<p class="text-slate-900 dark:text-white text-2xl font-bold leading-none">8</p>
+<p class="text-green-600 dark:text-green-400 text-xs font-medium mb-0.5 flex items-center">
+<span class="material-symbols-outlined text-[14px] mr-0.5">trending_up</span>
+                                +2 this week
+                            </p>
+</div>
+</div>
+<!-- Stat Card 3 -->
+<div class="bg-white dark:bg-slate-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col gap-1">
+<div class="flex justify-between items-start">
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium">Completed</p>
+<span class="p-1.5 rounded-md bg-green-50 dark:bg-green-900/20 text-green-600 dark:text-green-400">
+<span class="material-symbols-outlined text-[20px]">check_circle</span>
+</span>
+</div>
+<div class="flex items-end gap-2 mt-2">
+<p class="text-slate-900 dark:text-white text-2xl font-bold leading-none">24</p>
+<p class="text-slate-400 dark:text-slate-500 text-xs font-medium mb-0.5">tasks done</p>
+</div>
+</div>
+<!-- Stat Card 4 -->
+<div class="bg-white dark:bg-slate-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col gap-1">
+<div class="flex justify-between items-start">
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium">Overdue</p>
+<span class="p-1.5 rounded-md bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400">
+<span class="material-symbols-outlined text-[20px]">warning</span>
+</span>
+</div>
+<div class="flex items-end gap-2 mt-2">
+<p class="text-slate-900 dark:text-white text-2xl font-bold leading-none">2</p>
+<p class="text-red-600 dark:text-red-400 text-xs font-medium mb-0.5">needs attention</p>
+</div>
+</div>
+</div>
+<!-- Main Grid -->
+<div class="grid grid-cols-1 xl:grid-cols-3 gap-6">
+<!-- Left Column (Progress & Milestones) -->
+<div class="xl:col-span-2 flex flex-col gap-6">
+<!-- Progress Section -->
+<div class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm p-6">
+<div class="flex flex-col sm:flex-row gap-8 items-center sm:items-start">
+<!-- Gauge -->
+<div class="relative size-48 flex-shrink-0">
+<svg class="size-full -rotate-90" viewbox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
+<!-- Background Circle -->
+<circle class="stroke-slate-100 dark:stroke-slate-800" cx="18" cy="18" fill="none" r="16" stroke-width="3"></circle>
+<!-- Progress Circle -->
+<circle class="stroke-primary" cx="18" cy="18" fill="none" r="16" stroke-dasharray="100" stroke-dashoffset="32" stroke-linecap="round" stroke-width="3"></circle>
+</svg>
+<!-- Text Centered -->
+<div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
+<span class="text-3xl font-bold text-slate-900 dark:text-white">68%</span>
+<span class="text-xs text-slate-500 dark:text-slate-400 font-medium">Complete</span>
+</div>
+</div>
+<!-- Description -->
+<div class="flex-1 flex flex-col gap-4 w-full">
+<div>
+<h3 class="text-lg font-bold text-slate-900 dark:text-white mb-1">Overall Progress</h3>
+<p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">
+                                            The project is moving forward well. We are currently ahead of schedule on the design phase but waiting for final content assets from the client.
+                                        </p>
+</div>
+<div class="grid grid-cols-2 gap-4 mt-2">
+<div class="flex flex-col gap-1 p-3 rounded-lg bg-slate-50 dark:bg-slate-800/50">
+<span class="text-xs text-slate-500 dark:text-slate-400 font-medium">Budget Used</span>
+<span class="text-sm font-bold text-slate-900 dark:text-white">$12,450 / $20,000</span>
+<div class="w-full h-1.5 bg-slate-200 dark:bg-slate-700 rounded-full mt-1">
+<div class="h-1.5 bg-emerald-500 rounded-full" style="width: 62%"></div>
+</div>
+</div>
+<div class="flex flex-col gap-1 p-3 rounded-lg bg-slate-50 dark:bg-slate-800/50">
+<span class="text-xs text-slate-500 dark:text-slate-400 font-medium">Time Elapsed</span>
+<span class="text-sm font-bold text-slate-900 dark:text-white">4 Weeks / 6 Weeks</span>
+<div class="w-full h-1.5 bg-slate-200 dark:bg-slate-700 rounded-full mt-1">
+<div class="h-1.5 bg-amber-500 rounded-full" style="width: 66%"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Upcoming Milestones -->
+<div class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col">
+<div class="p-5 border-b border-slate-100 dark:border-slate-800 flex justify-between items-center">
+<h3 class="text-base font-bold text-slate-900 dark:text-white">Upcoming Milestones</h3>
+<button class="text-primary text-sm font-medium hover:text-blue-700 transition-colors">View All</button>
+</div>
+<div class="p-0">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="text-xs text-slate-500 dark:text-slate-400 border-b border-slate-100 dark:border-slate-800">
+<th class="font-medium p-5 py-3">Milestone Name</th>
+<th class="font-medium p-5 py-3">Due Date</th>
+<th class="font-medium p-5 py-3">Assignee</th>
+<th class="font-medium p-5 py-3 text-right">Status</th>
+</tr>
+</thead>
+<tbody class="text-sm">
+<tr class="border-b border-slate-50 dark:border-slate-800/50 hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-colors group">
+<td class="p-5 py-4">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center text-purple-600 dark:text-purple-400">
+<span class="material-symbols-outlined text-[18px]">brush</span>
+</div>
+<span class="font-medium text-slate-900 dark:text-white">Draft Review</span>
+</div>
+</td>
+<td class="p-5 py-4 text-slate-600 dark:text-slate-300">Oct 12, 2023</td>
+<td class="p-5 py-4">
+<div class="flex items-center gap-2">
+<img alt="Assignee" class="size-6 rounded-full object-cover" data-alt="Small avatar of woman" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCbyFjxOnYLnE_URDc6ph6h9CrpOC9tljECuJ0lIrfHOPhem9aeBlSOOffYp1VXwsoPf-ao-37NAVjSImvsBnIOf4hebNBgb9MI7bOVWz8DUGoiASRpBda-fpok4k3VR5DqGCOXyiS0GigWAzgz1J55NrJx576I02i-gMOawcFGPcWW3E14yp5y7xff8Dv2PDyeWNMQHzyLmU-olheUT4S-oaotaB7S8YNFx_KAcWWz9MKSg4QtdaBbkqK6oWlXFKrEUSioWyrs0Pc"/>
+<span class="text-slate-600 dark:text-slate-300">Sarah M.</span>
+</div>
+</td>
+<td class="p-5 py-4 text-right">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-400">
+                                                        Pending
+                                                    </span>
+</td>
+</tr>
+<tr class="border-b border-slate-50 dark:border-slate-800/50 hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-colors group">
+<td class="p-5 py-4">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center text-blue-600 dark:text-blue-400">
+<span class="material-symbols-outlined text-[18px]">code</span>
+</div>
+<span class="font-medium text-slate-900 dark:text-white">Frontend Handoff</span>
+</div>
+</td>
+<td class="p-5 py-4 text-slate-600 dark:text-slate-300">Oct 15, 2023</td>
+<td class="p-5 py-4">
+<div class="flex items-center gap-2">
+<img alt="Assignee" class="size-6 rounded-full object-cover" data-alt="Small avatar of man" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDdhK9i0QhLetIvbzdSVMh4cPpd3cNiisUOKDDlx2F2mA8Q6w3YORiHOmQLyseo6AEQCKeii2D9uHdXJlNFhLhwxlOvljPGIzTlkVgIMlNHm9M3KQcOrLvbPUyrmn1gsBvO2M3xrcVYHt5P9yj1P1SqPpFSUAIszzfRFoCF4UnTgiJ9A5YqT5m20b3_5d7Td42sclkTJpJrz82Em8AaBBiqAC_WEw3rWxOqgM0J5YmWRYEnf0Ph8wuMtx6zSTsX7AuQnjIS2qhu-Aw"/>
+<span class="text-slate-600 dark:text-slate-300">Mike R.</span>
+</div>
+</td>
+<td class="p-5 py-4 text-right">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-800 dark:bg-slate-800 dark:text-slate-400">
+                                                        Not Started
+                                                    </span>
+</td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-colors group">
+<td class="p-5 py-4">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded bg-green-100 dark:bg-green-900/30 flex items-center justify-center text-green-600 dark:text-green-400">
+<span class="material-symbols-outlined text-[18px]">rocket_launch</span>
+</div>
+<span class="font-medium text-slate-900 dark:text-white">Final Launch</span>
+</div>
+</td>
+<td class="p-5 py-4 text-slate-600 dark:text-slate-300">Oct 25, 2023</td>
+<td class="p-5 py-4">
+<div class="flex items-center gap-2">
+<div class="size-6 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center text-xs font-bold text-slate-500 dark:text-slate-400">
+                                                            TM
+                                                        </div>
+<span class="text-slate-600 dark:text-slate-300">Team</span>
+</div>
+</td>
+<td class="p-5 py-4 text-right">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-800 dark:bg-slate-800 dark:text-slate-400">
+                                                        Scheduled
+                                                    </span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column (Activity & Team) -->
+<div class="flex flex-col gap-6">
+<!-- Recent Activity -->
+<div class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm p-5 flex-1">
+<h3 class="text-base font-bold text-slate-900 dark:text-white mb-5">Recent Activity</h3>
+<div class="relative pl-4 border-l border-slate-200 dark:border-slate-800 space-y-6">
+<!-- Item 1 -->
+<div class="relative">
+<div class="absolute -left-[21px] top-1 size-3 rounded-full bg-primary border-2 border-white dark:border-slate-900"></div>
+<div class="flex flex-col gap-1">
+<p class="text-sm text-slate-900 dark:text-white font-medium">
+<span class="font-bold">Mike</span> uploaded <span class="text-primary cursor-pointer hover:underline">final_assets.zip</span>
+</p>
+<p class="text-xs text-slate-400">10 mins ago</p>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="relative">
+<div class="absolute -left-[21px] top-1 size-3 rounded-full bg-slate-300 dark:bg-slate-600 border-2 border-white dark:border-slate-900"></div>
+<div class="flex flex-col gap-1">
+<p class="text-sm text-slate-900 dark:text-white font-medium">
+<span class="font-bold">Anna</span> moved <span class="font-semibold text-slate-700 dark:text-slate-300">Homepage Design</span> to Review
+                                        </p>
+<p class="text-xs text-slate-400">1 hour ago</p>
+<div class="mt-2 p-2 rounded bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-slate-700">
+<div class="flex items-center gap-2">
+<div class="size-8 rounded bg-slate-200 dark:bg-slate-700 bg-cover bg-center" data-alt="Thumbnail of homepage design" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCdLojkeMDaMBk_AbVIGbz3iW_0sjkD406YHb7Mm0WobFvH-HwMWlLwFDIA5BxC2N5wtEEFe-Cx_KV2CnlrAjLtCuIkX1oLLPkmkjBqf9sF7mUccUjsRQvZNUDd6C3zOS1lB04GG-0T4mSsCcBzv9gzfbgCIidJE2zIVAhGQaVzryryrQdWSDIvr3_wYjB_EchMjfbE-XCVahM7cYxKpCq0aI9paVKUk0YyJI5UxlGoidQkv_CJlK7aZzejkFNBdxWVbbE0aEqg3AU");'></div>
+<div class="flex flex-col">
+<span class="text-xs font-medium text-slate-700 dark:text-slate-200">Homepage_v2.fig</span>
+<span class="text-[10px] text-slate-400">2.4 MB</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Item 3 -->
+<div class="relative">
+<div class="absolute -left-[21px] top-1 size-3 rounded-full bg-slate-300 dark:bg-slate-600 border-2 border-white dark:border-slate-900"></div>
+<div class="flex flex-col gap-1">
+<p class="text-sm text-slate-900 dark:text-white font-medium">
+<span class="font-bold">Sarah</span> commented on <span class="font-semibold text-slate-700 dark:text-slate-300">User Flow</span>
+</p>
+<p class="text-xs text-slate-400">3 hours ago</p>
+<p class="text-xs text-slate-500 dark:text-slate-400 italic">"Can we check the mobile responsive view for this step?"</p>
+</div>
+</div>
+<!-- Item 4 -->
+<div class="relative">
+<div class="absolute -left-[21px] top-1 size-3 rounded-full bg-slate-300 dark:bg-slate-600 border-2 border-white dark:border-slate-900"></div>
+<div class="flex flex-col gap-1">
+<p class="text-sm text-slate-900 dark:text-white font-medium">
+<span class="font-bold">System</span> created milestone <span class="font-semibold text-slate-700 dark:text-slate-300">Q3 Launch</span>
+</p>
+<p class="text-xs text-slate-400">Yesterday</p>
+</div>
+</div>
+</div>
+<button class="w-full mt-6 py-2 text-sm text-slate-500 hover:text-primary font-medium border border-dashed border-slate-300 dark:border-slate-700 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+                                Load more activity
+                            </button>
+</div>
+<!-- Files Quick Access (Bonus) -->
+<div class="bg-primary text-white rounded-xl shadow-lg p-5 overflow-hidden relative">
+<div class="relative z-10">
+<h3 class="text-base font-bold mb-1">Project Brief</h3>
+<p class="text-white/80 text-xs mb-4">Last updated 2 days ago</p>
+<button class="flex items-center gap-2 px-3 py-1.5 bg-white/10 hover:bg-white/20 backdrop-blur-sm rounded-lg text-xs font-bold transition-colors">
+<span class="material-symbols-outlined text-[16px]">download</span>
+                                    Download PDF
+                                </button>
+</div>
+<!-- Decor -->
+<div class="absolute -bottom-4 -right-4 text-white/10 rotate-12">
+<span class="material-symbols-outlined text-[100px]">description</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</div>
+</body></html>

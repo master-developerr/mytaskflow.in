@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Calendar &amp; Time Blocking</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Theme Config -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#137fec",
+              "background-light": "#f6f7f8",
+              "background-dark": "#101922",
+              "surface-light": "#ffffff",
+              "surface-dark": "#1e293b",
+            },
+            fontFamily: {
+              "display": ["Inter", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display overflow-hidden h-screen flex">
+<!-- Main Navigation Sidebar -->
+<aside class="w-20 lg:w-64 flex flex-col border-r border-slate-200 dark:border-slate-800 bg-surface-light dark:bg-surface-dark transition-all duration-300 z-20">
+<div class="h-16 flex items-center px-6 border-b border-slate-100 dark:border-slate-800">
+<div class="size-8 bg-primary rounded-lg flex items-center justify-center text-white">
+<span class="material-symbols-outlined">calendar_month</span>
+</div>
+<h1 class="ml-3 font-bold text-lg hidden lg:block tracking-tight">TimeBlock</h1>
+</div>
+<nav class="flex-1 overflow-y-auto py-6 px-3 flex flex-col gap-2">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">dashboard</span>
+<span class="font-medium hidden lg:block">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-primary/10 text-primary dark:bg-primary/20" href="#">
+<span class="material-symbols-outlined fill-1">calendar_today</span>
+<span class="font-medium hidden lg:block">Calendar</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">folder</span>
+<span class="font-medium hidden lg:block">Projects</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">bar_chart</span>
+<span class="font-medium hidden lg:block">Reports</span>
+</a>
+<div class="mt-8 px-3 hidden lg:block">
+<p class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-3">Lists</p>
+<div class="space-y-1">
+<button class="flex items-center gap-2 w-full text-sm text-slate-600 dark:text-slate-300 hover:text-primary py-1">
+<span class="w-2 h-2 rounded-full bg-red-400"></span> Personal
+                    </button>
+<button class="flex items-center gap-2 w-full text-sm text-slate-600 dark:text-slate-300 hover:text-primary py-1">
+<span class="w-2 h-2 rounded-full bg-indigo-400"></span> Agency Work
+                    </button>
+<button class="flex items-center gap-2 w-full text-sm text-slate-600 dark:text-slate-300 hover:text-primary py-1">
+<span class="w-2 h-2 rounded-full bg-emerald-400"></span> Marketing
+                    </button>
+</div>
+</div>
+</nav>
+<div class="p-4 border-t border-slate-200 dark:border-slate-800">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-full bg-cover bg-center border-2 border-white dark:border-slate-700 shadow-sm" data-alt="User profile picture of a smiling man" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDWPaHoF6pNTHBjM85jjrprk5jXL0RQ7JOIhHdu8TdfjZkmV7f_qPSKG7IO_IJOmu8g7AqmmB4tLHVS-KgvefQiuLSCGSz80avcrJ6CF74wB500JhWQi4zp-A8nxXFEeYFP_0w92S451ECdXTOznKRDz0IoROi4ekeAGPGdPmnn46Rpk72P2NUrG5DI7EhjpbbFTvo4Lr1fLOaWwMlTutVhldETT_AePfATTGXxwzDkKJqw39VtmGlpclf8IapY61rjvayBpFczXX0');"></div>
+<div class="hidden lg:flex flex-col overflow-hidden">
+<p class="text-sm font-semibold truncate text-slate-900 dark:text-white">Alex Morgan</p>
+<p class="text-xs text-slate-500 truncate">Pro Plan</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 flex flex-col h-full overflow-hidden relative">
+<!-- Top Header -->
+<header class="h-16 border-b border-slate-200 dark:border-slate-800 bg-surface-light dark:bg-surface-dark flex items-center justify-between px-6 z-10 shrink-0">
+<div class="flex items-center gap-6">
+<!-- Date Navigation -->
+<div class="flex items-center gap-4">
+<h2 class="text-xl font-bold text-slate-900 dark:text-white tracking-tight">October 2023</h2>
+<div class="flex bg-slate-100 dark:bg-slate-800 rounded-lg p-0.5 border border-slate-200 dark:border-slate-700">
+<button class="p-1 hover:bg-white dark:hover:bg-slate-700 rounded-md text-slate-500 dark:text-slate-400 transition-shadow shadow-sm hover:shadow">
+<span class="material-symbols-outlined text-[20px]">chevron_left</span>
+</button>
+<button class="px-3 text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-white dark:hover:bg-slate-700 rounded-md transition-shadow shadow-sm hover:shadow mx-0.5">
+                            Today
+                        </button>
+<button class="p-1 hover:bg-white dark:hover:bg-slate-700 rounded-md text-slate-500 dark:text-slate-400 transition-shadow shadow-sm hover:shadow">
+<span class="material-symbols-outlined text-[20px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<!-- View Toggle -->
+<div class="hidden md:flex bg-slate-100 dark:bg-slate-800 rounded-lg p-1 text-sm font-medium text-slate-600 dark:text-slate-400">
+<button class="px-3 py-1.5 rounded-md hover:text-slate-900 dark:hover:text-white">Day</button>
+<button class="px-3 py-1.5 rounded-md bg-white dark:bg-slate-600 text-slate-900 dark:text-white shadow-sm">Week</button>
+<button class="px-3 py-1.5 rounded-md hover:text-slate-900 dark:hover:text-white">Month</button>
+</div>
+<div class="h-6 w-px bg-slate-200 dark:bg-slate-700 mx-2"></div>
+<button class="text-slate-500 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">search</span>
+</button>
+<button class="text-slate-500 hover:text-primary transition-colors relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-0 right-0 size-2 bg-red-500 rounded-full border-2 border-white dark:border-surface-dark"></span>
+</button>
+<button class="bg-primary hover:bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium flex items-center gap-2 shadow-lg shadow-blue-500/20 transition-all">
+<span class="material-symbols-outlined text-[20px]">add</span>
+<span class="hidden sm:inline">New Event</span>
+</button>
+</div>
+</header>
+<!-- Calendar Workspace -->
+<div class="flex-1 flex overflow-hidden">
+<!-- Backlog / Unscheduled Tasks Sidebar -->
+<div class="w-80 bg-background-light dark:bg-[#15202b] border-r border-slate-200 dark:border-slate-800 flex flex-col shrink-0">
+<div class="p-4 border-b border-slate-200 dark:border-slate-800 flex justify-between items-center bg-white dark:bg-surface-dark">
+<h3 class="font-semibold text-slate-900 dark:text-white">Backlog <span class="ml-2 text-xs bg-slate-100 dark:bg-slate-700 text-slate-500 px-2 py-0.5 rounded-full">4</span></h3>
+<button class="text-slate-400 hover:text-primary">
+<span class="material-symbols-outlined text-[20px]">filter_list</span>
+</button>
+</div>
+<!-- Quick Add -->
+<div class="p-4 pb-2">
+<div class="relative">
+<input class="w-full pl-9 pr-4 py-2.5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all" placeholder="Add a task..." type="text"/>
+<span class="material-symbols-outlined absolute left-2.5 top-2.5 text-slate-400 text-[20px]">add_circle</span>
+</div>
+</div>
+<!-- Task List -->
+<div class="flex-1 overflow-y-auto p-4 space-y-3">
+<!-- Task Card -->
+<div class="bg-white dark:bg-slate-800 p-3 rounded-lg border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md hover:border-primary/50 transition-all cursor-grab active:cursor-grabbing group relative">
+<div class="flex justify-between items-start mb-2">
+<span class="px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 dark:bg-indigo-900/30 dark:text-indigo-300 rounded-sm">Agency</span>
+<button class="opacity-0 group-hover:opacity-100 text-slate-400 hover:text-red-500"><span class="material-symbols-outlined text-[16px]">more_horiz</span></button>
+</div>
+<h4 class="text-sm font-medium text-slate-800 dark:text-slate-200 leading-tight">Design Homepage Mockups</h4>
+<div class="flex items-center gap-2 mt-3 text-xs text-slate-500">
+<span class="material-symbols-outlined text-[14px]">schedule</span> 2h
+                        </div>
+</div>
+<!-- Task Card -->
+<div class="bg-white dark:bg-slate-800 p-3 rounded-lg border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md hover:border-primary/50 transition-all cursor-grab active:cursor-grabbing group relative">
+<div class="flex justify-between items-start mb-2">
+<span class="px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-emerald-600 bg-emerald-50 dark:bg-emerald-900/30 dark:text-emerald-300 rounded-sm">Marketing</span>
+<button class="opacity-0 group-hover:opacity-100 text-slate-400 hover:text-red-500"><span class="material-symbols-outlined text-[16px]">more_horiz</span></button>
+</div>
+<h4 class="text-sm font-medium text-slate-800 dark:text-slate-200 leading-tight">Q3 Performance Report</h4>
+<div class="flex items-center gap-2 mt-3 text-xs text-slate-500">
+<span class="material-symbols-outlined text-[14px]">schedule</span> 1h 30m
+                        </div>
+</div>
+<!-- Task Card -->
+<div class="bg-white dark:bg-slate-800 p-3 rounded-lg border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md hover:border-primary/50 transition-all cursor-grab active:cursor-grabbing group relative">
+<div class="flex justify-between items-start mb-2">
+<span class="px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-red-600 bg-red-50 dark:bg-red-900/30 dark:text-red-300 rounded-sm">Personal</span>
+<button class="opacity-0 group-hover:opacity-100 text-slate-400 hover:text-red-500"><span class="material-symbols-outlined text-[16px]">more_horiz</span></button>
+</div>
+<h4 class="text-sm font-medium text-slate-800 dark:text-slate-200 leading-tight">Dentist Appointment</h4>
+<div class="flex items-center gap-2 mt-3 text-xs text-slate-500">
+<span class="material-symbols-outlined text-[14px]">schedule</span> 45m
+                        </div>
+</div>
+<!-- Task Card -->
+<div class="bg-white dark:bg-slate-800 p-3 rounded-lg border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md hover:border-primary/50 transition-all cursor-grab active:cursor-grabbing group relative">
+<div class="flex justify-between items-start mb-2">
+<span class="px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 dark:bg-indigo-900/30 dark:text-indigo-300 rounded-sm">Agency</span>
+<button class="opacity-0 group-hover:opacity-100 text-slate-400 hover:text-red-500"><span class="material-symbols-outlined text-[16px]">more_horiz</span></button>
+</div>
+<h4 class="text-sm font-medium text-slate-800 dark:text-slate-200 leading-tight">Client Meeting Prep</h4>
+<div class="flex items-center gap-2 mt-3 text-xs text-slate-500">
+<span class="material-symbols-outlined text-[14px]">schedule</span> 15m
+                       </div>
+</div>
+</div>
+</div>
+<!-- Main Calendar Grid -->
+<div class="flex-1 overflow-auto bg-white dark:bg-surface-dark relative flex flex-col">
+<!-- Day Headers -->
+<div class="flex border-b border-slate-200 dark:border-slate-800 sticky top-0 bg-white dark:bg-surface-dark z-20 shadow-sm">
+<div class="w-16 shrink-0 border-r border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/50"></div> <!-- Time axis spacer -->
+<div class="flex-1 grid grid-cols-7 divide-x divide-slate-100 dark:divide-slate-800">
+<div class="text-center py-4 group cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800">
+<p class="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase mb-1">Mon</p>
+<div class="text-xl font-semibold text-slate-700 dark:text-slate-200 w-8 h-8 rounded-full flex items-center justify-center mx-auto group-hover:bg-slate-200 dark:group-hover:bg-slate-700 transition-colors">23</div>
+</div>
+<div class="text-center py-4 group cursor-pointer bg-primary/5 dark:bg-primary/10">
+<p class="text-xs font-bold text-primary uppercase mb-1">Tue</p>
+<div class="text-xl font-bold text-white bg-primary w-8 h-8 rounded-full flex items-center justify-center mx-auto shadow-md shadow-blue-500/30">24</div>
+</div>
+<div class="text-center py-4 group cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800">
+<p class="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase mb-1">Wed</p>
+<div class="text-xl font-semibold text-slate-700 dark:text-slate-200 w-8 h-8 rounded-full flex items-center justify-center mx-auto group-hover:bg-slate-200 dark:group-hover:bg-slate-700 transition-colors">25</div>
+</div>
+<div class="text-center py-4 group cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800">
+<p class="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase mb-1">Thu</p>
+<div class="text-xl font-semibold text-slate-700 dark:text-slate-200 w-8 h-8 rounded-full flex items-center justify-center mx-auto group-hover:bg-slate-200 dark:group-hover:bg-slate-700 transition-colors">26</div>
+</div>
+<div class="text-center py-4 group cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800">
+<p class="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase mb-1">Fri</p>
+<div class="text-xl font-semibold text-slate-700 dark:text-slate-200 w-8 h-8 rounded-full flex items-center justify-center mx-auto group-hover:bg-slate-200 dark:group-hover:bg-slate-700 transition-colors">27</div>
+</div>
+<div class="text-center py-4 group cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800 bg-slate-50/50 dark:bg-slate-900/30">
+<p class="text-xs font-medium text-slate-400 dark:text-slate-500 uppercase mb-1">Sat</p>
+<div class="text-xl font-semibold text-slate-500 dark:text-slate-500 w-8 h-8 rounded-full flex items-center justify-center mx-auto group-hover:bg-slate-200 dark:group-hover:bg-slate-700 transition-colors">28</div>
+</div>
+<div class="text-center py-4 group cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800 bg-slate-50/50 dark:bg-slate-900/30">
+<p class="text-xs font-medium text-slate-400 dark:text-slate-500 uppercase mb-1">Sun</p>
+<div class="text-xl font-semibold text-slate-500 dark:text-slate-500 w-8 h-8 rounded-full flex items-center justify-center mx-auto group-hover:bg-slate-200 dark:group-hover:bg-slate-700 transition-colors">29</div>
+</div>
+</div>
+</div>
+<!-- Grid Body -->
+<div class="flex relative min-h-[1000px]"> <!-- min-h to allow scrolling -->
+<!-- Time Labels -->
+<div class="w-16 shrink-0 flex flex-col border-r border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/20 text-xs font-medium text-slate-400 dark:text-slate-500 select-none">
+<!-- 8 AM to 6 PM -->
+<div class="h-24 flex items-start justify-center pt-2 relative"><span class="-translate-y-1/2">8 AM</span></div>
+<div class="h-24 flex items-start justify-center pt-2 relative"><span class="-translate-y-1/2">9 AM</span></div>
+<div class="h-24 flex items-start justify-center pt-2 relative"><span class="-translate-y-1/2">10 AM</span></div>
+<div class="h-24 flex items-start justify-center pt-2 relative"><span class="-translate-y-1/2">11 AM</span></div>
+<div class="h-24 flex items-start justify-center pt-2 relative"><span class="-translate-y-1/2">12 PM</span></div>
+<div class="h-24 flex items-start justify-center pt-2 relative"><span class="-translate-y-1/2">1 PM</span></div>
+<div class="h-24 flex items-start justify-center pt-2 relative"><span class="-translate-y-1/2">2 PM</span></div>
+<div class="h-24 flex items-start justify-center pt-2 relative"><span class="-translate-y-1/2">3 PM</span></div>
+<div class="h-24 flex items-start justify-center pt-2 relative"><span class="-translate-y-1/2">4 PM</span></div>
+<div class="h-24 flex items-start justify-center pt-2 relative"><span class="-translate-y-1/2">5 PM</span></div>
+<div class="h-24 flex items-start justify-center pt-2 relative"><span class="-translate-y-1/2">6 PM</span></div>
+</div>
+<!-- Grid Columns -->
+<div class="flex-1 grid grid-cols-7 relative divide-x divide-slate-100 dark:divide-slate-800 bg-dots-light dark:bg-dots-dark">
+<!-- Horizontal Grid Lines (Absolute to sit behind events) -->
+<div class="absolute inset-0 flex flex-col pointer-events-none z-0">
+<div class="h-24 border-b border-slate-100 dark:border-slate-800 border-dashed"></div>
+<div class="h-24 border-b border-slate-100 dark:border-slate-800 border-dashed"></div>
+<div class="h-24 border-b border-slate-100 dark:border-slate-800 border-dashed"></div>
+<div class="h-24 border-b border-slate-100 dark:border-slate-800 border-dashed"></div>
+<div class="h-24 border-b border-slate-100 dark:border-slate-800 border-dashed"></div>
+<div class="h-24 border-b border-slate-100 dark:border-slate-800 border-dashed"></div>
+<div class="h-24 border-b border-slate-100 dark:border-slate-800 border-dashed"></div>
+<div class="h-24 border-b border-slate-100 dark:border-slate-800 border-dashed"></div>
+<div class="h-24 border-b border-slate-100 dark:border-slate-800 border-dashed"></div>
+<div class="h-24 border-b border-slate-100 dark:border-slate-800 border-dashed"></div>
+</div>
+<!-- Current Time Indicator Line (Spanning full width) -->
+<div class="absolute w-full border-t-2 border-red-500 z-30 pointer-events-none flex items-center" style="top: 25%;">
+<div class="absolute -left-[68px] w-16 text-right pr-2 text-xs font-bold text-red-500">10:30 AM</div>
+<div class="size-2 bg-red-500 rounded-full -ml-1"></div>
+</div>
+<!-- Columns for Dropping -->
+<div class="relative h-full">
+<!-- Events for Mon -->
+<div class="absolute top-[24px] left-1 right-1 h-[192px] bg-indigo-100 dark:bg-indigo-900/60 border-l-4 border-indigo-500 rounded-md p-2 cursor-pointer hover:shadow-md transition-shadow z-10">
+<p class="text-xs font-bold text-indigo-700 dark:text-indigo-200">Deep Work: Coding</p>
+<p class="text-[10px] text-indigo-600 dark:text-indigo-300 mt-1">8:15 AM - 10:15 AM</p>
+</div>
+</div>
+<div class="relative h-full bg-slate-50/30 dark:bg-slate-800/20"> <!-- Highlighted Today Column -->
+<!-- Events for Tue (Today) -->
+<div class="absolute top-[280px] left-1 right-1 h-[48px] bg-sky-100 dark:bg-sky-900/60 border-l-4 border-sky-500 rounded-md p-1.5 cursor-pointer hover:shadow-md transition-shadow z-10 flex flex-col justify-center">
+<p class="text-xs font-bold text-sky-700 dark:text-sky-200 truncate">Team Sync</p>
+</div>
+<!-- Ghost Element (Drag Preview) -->
+<div class="absolute top-[500px] left-1 right-1 h-[96px] bg-slate-200 dark:bg-slate-700 border-2 border-dashed border-slate-400 dark:border-slate-500 rounded-md p-2 opacity-60 pointer-events-none z-20 flex items-center justify-center">
+<p class="text-xs font-medium text-slate-500 dark:text-slate-300">Drop to schedule</p>
+</div>
+</div>
+<div class="relative h-full">
+<!-- Events for Wed -->
+<div class="absolute top-[400px] left-1 right-1 h-[60px] bg-emerald-100 dark:bg-emerald-900/60 border-l-4 border-emerald-500 rounded-md p-1.5 cursor-pointer hover:shadow-md transition-shadow z-10">
+<p class="text-xs font-bold text-emerald-700 dark:text-emerald-200 truncate">Lunch w/ Client</p>
+<p class="text-[10px] text-emerald-600 dark:text-emerald-300 mt-0.5">12:10 PM</p>
+</div>
+</div>
+<div class="relative h-full"></div>
+<div class="relative h-full">
+<!-- Events for Fri -->
+<div class="absolute top-[700px] left-1 right-1 h-[96px] bg-amber-100 dark:bg-amber-900/60 border-l-4 border-amber-500 rounded-md p-2 cursor-pointer hover:shadow-md transition-shadow z-10">
+<p class="text-xs font-bold text-amber-700 dark:text-amber-200">Weekly Review</p>
+<p class="text-[10px] text-amber-600 dark:text-amber-300 mt-1">3:30 PM - 4:30 PM</p>
+</div>
+</div>
+<div class="relative h-full bg-slate-50/30 dark:bg-slate-900/10"></div>
+<div class="relative h-full bg-slate-50/30 dark:bg-slate-900/10"></div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Floating Action Button for Mobile (Hidden on Desktop) -->
+<button class="lg:hidden fixed bottom-6 right-6 size-14 bg-primary text-white rounded-full shadow-xl flex items-center justify-center z-50 hover:bg-blue-600 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-[28px]">add</span>
+</button>
+</body></html>

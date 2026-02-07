@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Task Details Panel</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                        "panel-light": "#ffffff",
+                        "panel-dark": "#1a2632",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for clean look */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: #cbd5e1;
+            border-radius: 20px;
+        }
+        .dark .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: #475569;
+        }
+    </style>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark overflow-hidden h-screen w-screen relative">
+<!-- Mock Kanban Background (Context) -->
+<div aria-hidden="true" class="absolute inset-0 flex p-6 gap-6 opacity-30 pointer-events-none select-none overflow-hidden">
+<!-- Column 1 -->
+<div class="flex-1 flex flex-col gap-4 min-w-[300px]">
+<div class="h-8 w-32 bg-slate-200 dark:bg-slate-700 rounded mb-2"></div>
+<div class="h-40 bg-white dark:bg-slate-800 rounded-lg shadow-sm border border-slate-200 dark:border-slate-700 p-4"></div>
+<div class="h-32 bg-white dark:bg-slate-800 rounded-lg shadow-sm border border-slate-200 dark:border-slate-700 p-4"></div>
+<div class="h-48 bg-white dark:bg-slate-800 rounded-lg shadow-sm border border-slate-200 dark:border-slate-700 p-4"></div>
+</div>
+<!-- Column 2 -->
+<div class="flex-1 flex flex-col gap-4 min-w-[300px]">
+<div class="h-8 w-32 bg-slate-200 dark:bg-slate-700 rounded mb-2"></div>
+<div class="h-36 bg-white dark:bg-slate-800 rounded-lg shadow-sm border border-slate-200 dark:border-slate-700 p-4"></div>
+<div class="h-56 bg-white dark:bg-slate-800 rounded-lg shadow-sm border border-slate-200 dark:border-slate-700 p-4"></div>
+</div>
+<!-- Column 3 -->
+<div class="flex-1 flex flex-col gap-4 min-w-[300px]">
+<div class="h-8 w-32 bg-slate-200 dark:bg-slate-700 rounded mb-2"></div>
+<div class="h-44 bg-white dark:bg-slate-800 rounded-lg shadow-sm border border-slate-200 dark:border-slate-700 p-4"></div>
+</div>
+<div class="flex-[2]"></div> <!-- Spacer for panel -->
+</div>
+<!-- Backdrop -->
+<div class="absolute inset-0 bg-background-dark/30 dark:bg-black/50 backdrop-blur-[1px] z-10"></div>
+<!-- Task Details Panel -->
+<div class="absolute top-0 right-0 h-full w-full max-w-[720px] bg-panel-light dark:bg-panel-dark shadow-2xl z-20 flex flex-col border-l border-slate-200 dark:border-slate-700 transform transition-transform duration-300 ease-in-out">
+<!-- Header -->
+<header class="flex items-center justify-between border-b border-slate-100 dark:border-slate-700 px-6 py-4 shrink-0">
+<div class="flex items-center gap-3">
+<span class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">TASK-1024</span>
+<span class="text-slate-300 dark:text-slate-600">|</span>
+<div class="flex items-center gap-2 px-2 py-1 rounded bg-blue-50 dark:bg-blue-900/30">
+<div class="h-2 w-2 rounded-full bg-blue-500"></div>
+<span class="text-xs font-medium text-blue-700 dark:text-blue-300">In Progress</span>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button class="flex items-center justify-center h-9 px-4 rounded-lg bg-primary text-white text-sm font-bold hover:bg-blue-600 transition-colors shadow-sm shadow-blue-500/20">
+<span class="material-symbols-outlined text-[18px] mr-2">check</span>
+                    Mark Complete
+                </button>
+<div class="h-6 w-px bg-slate-200 dark:bg-slate-700 mx-2"></div>
+<button class="flex items-center justify-center h-9 w-9 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-500 dark:text-slate-400 transition-colors">
+<span class="material-symbols-outlined text-[20px]">link</span>
+</button>
+<button class="flex items-center justify-center h-9 w-9 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-500 dark:text-slate-400 transition-colors">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+<button class="flex items-center justify-center h-9 w-9 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-500 dark:text-slate-400 transition-colors ml-2">
+<span class="material-symbols-outlined text-[24px]">close</span>
+</button>
+</div>
+</header>
+<!-- Scrollable Content -->
+<div class="flex-1 overflow-y-auto custom-scrollbar p-8">
+<div class="flex flex-col gap-8 max-w-[640px] mx-auto">
+<!-- Headline -->
+<div class="group relative">
+<h1 class="text-3xl font-bold text-slate-900 dark:text-white leading-tight tracking-tight focus:outline-none focus:ring-2 focus:ring-primary/20 rounded p-1 -ml-1 hover:bg-slate-50 dark:hover:bg-slate-800/50 cursor-text transition-colors">
+                        Redesign Landing Page Hero Section
+                    </h1>
+</div>
+<!-- Metadata Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-6">
+<!-- Assignee -->
+<div class="flex flex-col gap-1.5">
+<label class="text-[11px] font-bold text-slate-400 uppercase tracking-widest">Assignee</label>
+<div class="relative group">
+<button class="flex items-center w-full gap-3 p-2 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800 border border-transparent hover:border-slate-200 dark:hover:border-slate-700 transition-all text-left">
+<img alt="Profile picture of Sarah Jenkins" class="h-8 w-8 rounded-full object-cover ring-2 ring-white dark:ring-slate-700" data-alt="User avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDjA9er1aFP-sahhDitCwWtlMDaCMD6o3bYxEP_r0peev1XnVFsZ1bjeIPxdx6VbsJ6sowwUTvF07s4Nq0sUox3kkRVVtj7uU5xqSqOp-whxNhgE2zp-WeroGyBa1o62LkgrjUA7Y7Qa-HfOeMkusfZNaowkJl5qKuf9V9AXJ2nv-w6s0weQFAg15_GhY_MQ2vtFlNExgvJ4bSs8qYXxmXVvEL5kmDv_uvSQXfR2iM_29BPW8b3wUMbbMJnRyDapqd9jyG7Yh0FdcU"/>
+<span class="text-sm font-medium text-slate-700 dark:text-slate-200">Sarah Jenkins</span>
+<span class="material-symbols-outlined text-slate-400 ml-auto text-[18px]">expand_more</span>
+</button>
+</div>
+</div>
+<!-- Due Date (With open state styling) -->
+<div class="flex flex-col gap-1.5 relative">
+<label class="text-[11px] font-bold text-slate-400 uppercase tracking-widest">Due Date</label>
+<button class="flex items-center w-full gap-3 p-2 rounded-lg bg-blue-50/50 dark:bg-blue-900/10 border border-blue-200 dark:border-blue-800 text-left">
+<div class="flex items-center justify-center h-8 w-8 rounded bg-white dark:bg-slate-800 text-primary shadow-sm">
+<span class="material-symbols-outlined text-[18px]">calendar_today</span>
+</div>
+<span class="text-sm font-medium text-primary">Oct 24, 2023</span>
+</button>
+<!-- Popover Calendar (Simulated Open State) -->
+<div class="absolute top-full left-0 mt-2 z-30 bg-white dark:bg-slate-800 rounded-xl shadow-xl border border-slate-200 dark:border-slate-700 p-4 w-[320px] hidden group-hover:block">
+<!-- Note: Added 'hidden' but in a real app this would toggle. I'll leave it hidden by default to keep clean, 
+                                 but user requested component usage. I will display the calendar component below the grid for demonstration instead of popover to be safe with visibility requirements 
+                            -->
+</div>
+</div>
+<!-- Priority -->
+<div class="flex flex-col gap-1.5">
+<label class="text-[11px] font-bold text-slate-400 uppercase tracking-widest">Priority</label>
+<div class="flex items-center gap-2 p-2">
+<span class="flex h-2 w-2 rounded-full bg-red-500"></span>
+<span class="text-sm font-medium text-slate-700 dark:text-slate-200">High Priority</span>
+<button class="ml-auto text-slate-400 hover:text-slate-600">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+</div>
+</div>
+<!-- Recurring -->
+<div class="flex flex-col gap-1.5">
+<label class="text-[11px] font-bold text-slate-400 uppercase tracking-widest">Recurring</label>
+<div class="flex items-center gap-3 p-2 h-[42px]">
+<span class="material-symbols-outlined text-slate-400 text-[20px]">repeat</span>
+<span class="text-sm text-slate-500 dark:text-slate-400">Off</span>
+<div class="ml-auto relative inline-flex h-5 w-9 items-center rounded-full bg-slate-200 dark:bg-slate-700 cursor-pointer">
+<span class="inline-block h-3 w-3 transform rounded-full bg-white transition translate-x-1"></span>
+</div>
+</div>
+</div>
+<!-- Blocked By (Full Width) -->
+<div class="sm:col-span-2 flex flex-col gap-1.5">
+<label class="text-[11px] font-bold text-slate-400 uppercase tracking-widest">Blocked By</label>
+<div class="flex items-center gap-2 p-2 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50">
+<span class="material-symbols-outlined text-amber-500 text-[20px]">lock</span>
+<span class="text-sm font-medium text-slate-700 dark:text-slate-200">Finalize Copywriting (TASK-1020)</span>
+<button class="ml-auto text-slate-400 hover:text-slate-600 dark:hover:text-slate-300">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+</div>
+</div>
+</div>
+<hr class="border-slate-100 dark:border-slate-700/50"/>
+<!-- Description Section -->
+<div class="flex flex-col gap-3">
+<div class="flex items-center justify-between">
+<h3 class="text-base font-bold text-slate-900 dark:text-white">Description</h3>
+<div class="flex gap-1">
+<button class="p-1 rounded hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-400 hover:text-slate-600 transition-colors">
+<span class="material-symbols-outlined text-[18px]">format_bold</span>
+</button>
+<button class="p-1 rounded hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-400 hover:text-slate-600 transition-colors">
+<span class="material-symbols-outlined text-[18px]">format_italic</span>
+</button>
+<button class="p-1 rounded hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-400 hover:text-slate-600 transition-colors">
+<span class="material-symbols-outlined text-[18px]">format_list_bulleted</span>
+</button>
+</div>
+</div>
+<div class="prose prose-sm prose-slate dark:prose-invert max-w-none text-slate-600 dark:text-slate-300 leading-relaxed">
+<p>The current hero section is not converting well. We need to implement the new A/B test designs provided by the design team. Ensure that the main CTA is prominent and the background video loads lazily.</p>
+<ul class="list-disc pl-4 mt-2 space-y-1">
+<li>Implement new H1 typography styles</li>
+<li>Update button hover states to match design system</li>
+<li>Optimize hero image for mobile viewports</li>
+</ul>
+</div>
+</div>
+<!-- Embedded Calendar Picker (Demonstration of component usage as requested) -->
+<!-- Usually this would be hidden in a popover, but displaying here to satisfy "Task" requirements visibly -->
+<div class="flex flex-col gap-3">
+<h3 class="text-base font-bold text-slate-900 dark:text-white">Schedule</h3>
+<div class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-4 w-fit shadow-sm">
+<!-- Calendar Component Inner Logic Reuse -->
+<div class="flex flex-col gap-2 w-[280px]">
+<div class="flex items-center justify-between mb-2">
+<button class="p-1 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-full text-slate-600 dark:text-slate-300">
+<span class="material-symbols-outlined text-[20px]">chevron_left</span>
+</button>
+<p class="text-slate-900 dark:text-white text-sm font-bold">October 2023</p>
+<button class="p-1 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-full text-slate-600 dark:text-slate-300">
+<span class="material-symbols-outlined text-[20px]">chevron_right</span>
+</button>
+</div>
+<div class="grid grid-cols-7 text-center mb-2">
+<span class="text-[10px] font-bold text-slate-400">S</span>
+<span class="text-[10px] font-bold text-slate-400">M</span>
+<span class="text-[10px] font-bold text-slate-400">T</span>
+<span class="text-[10px] font-bold text-slate-400">W</span>
+<span class="text-[10px] font-bold text-slate-400">T</span>
+<span class="text-[10px] font-bold text-slate-400">F</span>
+<span class="text-[10px] font-bold text-slate-400">S</span>
+</div>
+<div class="grid grid-cols-7 gap-1 text-center">
+<!-- Empty days -->
+<span></span><span></span><span></span>
+<!-- Days -->
+<button class="h-8 w-8 flex items-center justify-center rounded-full text-xs text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700">1</button>
+<button class="h-8 w-8 flex items-center justify-center rounded-full text-xs text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700">2</button>
+<button class="h-8 w-8 flex items-center justify-center rounded-full text-xs text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700">3</button>
+<button class="h-8 w-8 flex items-center justify-center rounded-full text-xs text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700">4</button>
+<button class="h-8 w-8 flex items-center justify-center rounded-full text-xs text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700">5</button>
+<button class="h-8 w-8 flex items-center justify-center rounded-full text-xs text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700">6</button>
+<button class="h-8 w-8 flex items-center justify-center rounded-full text-xs text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700">7</button>
+<button class="h-8 w-8 flex items-center justify-center rounded-full text-xs text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700">8</button>
+<button class="h-8 w-8 flex items-center justify-center rounded-full text-xs text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700">9</button>
+<button class="h-8 w-8 flex items-center justify-center rounded-full text-xs text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700">10</button>
+<button class="h-8 w-8 flex items-center justify-center rounded-full text-xs text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700">11</button>
+<button class="h-8 w-8 flex items-center justify-center rounded-full text-xs text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700">12</button>
+<button class="h-8 w-8 flex items-center justify-center rounded-full text-xs text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700">13</button>
+<button class="h-8 w-8 flex items-center justify-center rounded-full text-xs text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700">14</button>
+<button class="h-8 w-8 flex items-center justify-center rounded-full text-xs text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700">15</button>
+<button class="h-8 w-8 flex items-center justify-center rounded-full text-xs text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700">16</button>
+<button class="h-8 w-8 flex items-center justify-center rounded-full text-xs text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700">17</button>
+<button class="h-8 w-8 flex items-center justify-center rounded-full text-xs text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700">18</button>
+<button class="h-8 w-8 flex items-center justify-center rounded-full text-xs text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700">19</button>
+<button class="h-8 w-8 flex items-center justify-center rounded-full text-xs text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700">20</button>
+<button class="h-8 w-8 flex items-center justify-center rounded-full text-xs text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700">21</button>
+<button class="h-8 w-8 flex items-center justify-center rounded-full text-xs text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700">22</button>
+<button class="h-8 w-8 flex items-center justify-center rounded-full text-xs text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700">23</button>
+<button class="h-8 w-8 flex items-center justify-center rounded-full text-xs text-white bg-primary font-bold shadow-md shadow-primary/30">24</button>
+<button class="h-8 w-8 flex items-center justify-center rounded-full text-xs text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700">25</button>
+<button class="h-8 w-8 flex items-center justify-center rounded-full text-xs text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700">26</button>
+<button class="h-8 w-8 flex items-center justify-center rounded-full text-xs text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700">27</button>
+<button class="h-8 w-8 flex items-center justify-center rounded-full text-xs text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700">28</button>
+<button class="h-8 w-8 flex items-center justify-center rounded-full text-xs text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700">29</button>
+<button class="h-8 w-8 flex items-center justify-center rounded-full text-xs text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700">30</button>
+<button class="h-8 w-8 flex items-center justify-center rounded-full text-xs text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700">31</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Sub-tasks -->
+<div class="flex flex-col gap-4">
+<div class="flex items-center justify-between">
+<h3 class="text-base font-bold text-slate-900 dark:text-white">Sub-tasks</h3>
+<span class="text-xs font-medium text-slate-400">1/3 Completed</span>
+</div>
+<!-- Progress Bar -->
+<div class="h-1.5 w-full bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
+<div class="h-full bg-green-500 w-1/3 rounded-full"></div>
+</div>
+<!-- Checklist -->
+<div class="flex flex-col gap-2">
+<!-- Item 1 (Done) -->
+<div class="group flex items-center gap-3 p-2 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-lg transition-colors cursor-pointer">
+<button class="flex items-center justify-center h-5 w-5 rounded bg-primary text-white">
+<span class="material-symbols-outlined text-[16px]">check</span>
+</button>
+<span class="text-sm text-slate-400 line-through decoration-slate-400">Export assets from Figma</span>
+</div>
+<!-- Item 2 -->
+<div class="group flex items-center gap-3 p-2 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-lg transition-colors cursor-pointer">
+<button class="flex items-center justify-center h-5 w-5 rounded border border-slate-300 dark:border-slate-500 hover:border-primary bg-white dark:bg-slate-900 text-transparent hover:text-primary transition-all">
+<span class="material-symbols-outlined text-[16px] opacity-0 group-hover:opacity-100">check</span>
+</button>
+<span class="text-sm text-slate-700 dark:text-slate-200">Update CSS variables</span>
+<div class="ml-auto opacity-0 group-hover:opacity-100 transition-opacity flex gap-2">
+<button class="text-slate-400 hover:text-slate-600"><span class="material-symbols-outlined text-[18px]">calendar_today</span></button>
+<button class="text-slate-400 hover:text-slate-600"><span class="material-symbols-outlined text-[18px]">person_add</span></button>
+</div>
+</div>
+<!-- Item 3 -->
+<div class="group flex items-center gap-3 p-2 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-lg transition-colors cursor-pointer">
+<button class="flex items-center justify-center h-5 w-5 rounded border border-slate-300 dark:border-slate-500 hover:border-primary bg-white dark:bg-slate-900 text-transparent hover:text-primary transition-all">
+<span class="material-symbols-outlined text-[16px] opacity-0 group-hover:opacity-100">check</span>
+</button>
+<span class="text-sm text-slate-700 dark:text-slate-200">Push to staging</span>
+<div class="ml-auto opacity-0 group-hover:opacity-100 transition-opacity flex gap-2">
+<button class="text-slate-400 hover:text-slate-600"><span class="material-symbols-outlined text-[18px]">calendar_today</span></button>
+<button class="text-slate-400 hover:text-slate-600"><span class="material-symbols-outlined text-[18px]">person_add</span></button>
+</div>
+</div>
+<!-- Add Item -->
+<button class="flex items-center gap-3 p-2 text-slate-500 hover:text-primary transition-colors mt-1">
+<span class="material-symbols-outlined text-[20px]">add</span>
+<span class="text-sm font-medium">Add a sub-task</span>
+</button>
+</div>
+</div>
+<div class="h-12"></div> <!-- Spacer -->
+</div>
+</div>
+<!-- Footer / Activity -->
+<div class="border-t border-slate-100 dark:border-slate-700 p-6 bg-slate-50 dark:bg-slate-800/30">
+<div class="flex gap-4">
+<div class="h-8 w-8 rounded-full bg-indigo-100 dark:bg-indigo-900 flex items-center justify-center shrink-0 text-indigo-600 dark:text-indigo-300 text-xs font-bold">
+                    YO
+                </div>
+<div class="flex-1 relative">
+<input class="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-600 rounded-lg py-2.5 pl-4 pr-12 text-sm text-slate-800 dark:text-slate-200 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all shadow-sm" placeholder="Add a comment..." type="text"/>
+<button class="absolute right-2 top-1.5 p-1 text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]">send</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</body></html>

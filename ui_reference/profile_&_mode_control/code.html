@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Profile &amp; Mode Control</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings:
+            'FILL' 0,
+            'wght' 400,
+            'GRAD' 0,
+            'opsz' 24
+        }
+        .icon-fill {
+            font-variation-settings: 'FILL' 1;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white h-screen flex overflow-hidden">
+<!-- Sidebar -->
+<aside class="w-64 bg-white dark:bg-[#15202b] border-r border-slate-200 dark:border-slate-800 flex-col justify-between hidden md:flex z-10">
+<div class="flex flex-col h-full">
+<div class="p-6 flex items-center gap-3">
+<div class="size-8 rounded-lg bg-primary flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-[20px]">grid_view</span>
+</div>
+<h1 class="text-lg font-bold tracking-tight text-slate-900 dark:text-white">TaskFlow</h1>
+</div>
+<div class="flex flex-col gap-2 px-4 mt-2">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 group transition-colors" href="#">
+<span class="material-symbols-outlined text-[22px]">dashboard</span>
+<span class="text-sm font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 group transition-colors" href="#">
+<span class="material-symbols-outlined text-[22px]">work</span>
+<span class="text-sm font-medium">Projects</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 group transition-colors" href="#">
+<span class="material-symbols-outlined text-[22px]">check_circle</span>
+<span class="text-sm font-medium">My Tasks</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 group transition-colors" href="#">
+<span class="material-symbols-outlined text-[22px]">group</span>
+<span class="text-sm font-medium">Team</span>
+</a>
+</div>
+<div class="mt-auto px-4 pb-6 flex flex-col gap-2">
+<div class="w-full h-px bg-slate-200 dark:bg-slate-800 my-2"></div>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-primary/10 text-primary dark:text-primary" href="#">
+<span class="material-symbols-outlined text-[22px] icon-fill">settings</span>
+<span class="text-sm font-medium">Settings</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors" href="#">
+<span class="material-symbols-outlined text-[22px]">logout</span>
+<span class="text-sm font-medium">Log out</span>
+</a>
+</div>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 overflow-y-auto scroll-smooth">
+<div class="layout-container flex flex-col min-h-full">
+<!-- Mobile Header (Visible only on small screens) -->
+<div class="md:hidden flex items-center justify-between p-4 bg-white dark:bg-[#15202b] border-b border-slate-200 dark:border-slate-800">
+<div class="flex items-center gap-2">
+<div class="size-8 rounded-lg bg-primary flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-[20px]">grid_view</span>
+</div>
+<span class="font-bold text-lg">TaskFlow</span>
+</div>
+<button class="text-slate-500">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+<!-- Content Area -->
+<div class="flex-1 w-full max-w-5xl mx-auto p-4 md:p-8 lg:p-12">
+<!-- Page Heading -->
+<div class="flex flex-col gap-2 mb-8 md:mb-10">
+<h1 class="text-3xl md:text-4xl font-black text-slate-900 dark:text-white tracking-tight">Profile &amp; Mode Control</h1>
+<p class="text-slate-500 dark:text-slate-400 text-lg">Manage your identity and switch between personal and agency workspaces.</p>
+</div>
+<!-- Profile Header -->
+<div class="bg-white dark:bg-[#15202b] rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 p-6 md:p-8 mb-8 flex flex-col md:flex-row items-center md:items-start gap-6 relative overflow-hidden">
+<div class="absolute top-0 right-0 p-32 bg-primary/5 rounded-full blur-3xl -mr-16 -mt-16 pointer-events-none"></div>
+<div class="relative">
+<div class="size-24 md:size-32 rounded-full bg-slate-200 bg-cover bg-center ring-4 ring-white dark:ring-[#15202b]" data-alt="Portrait of a woman with long hair smiling" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDVFjQSdpq75jwRHSfHRcBmsUQl0oANEL--D375WG0dctZmsyKb9osIW2pK63pt9aTTO6L1vR6LyrM_hTaj5_ATcNDJ_QPcR0HP3riSXf0JAbGP6wk94GcrYLUjHFMJkayIHA3WEyATWqGfza0wSAWugLRLb9oS93MtHwn4Yqbu8jeLWmlCbW5cBLOw9Fl_yEJGy9vLa0FQVeGyBnjdYocGAzdw0b8xH0KEgfDGV2T0VjRzJ7FkXdkmBPCwEVjA52MdCwr7pB4xTJg');"></div>
+<button aria-label="Edit Profile Picture" class="absolute bottom-0 right-0 p-2 bg-primary text-white rounded-full hover:bg-blue-600 transition-colors shadow-sm">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+</div>
+<div class="flex-1 flex flex-col items-center md:items-start text-center md:text-left pt-2">
+<div class="flex flex-col gap-1 mb-4">
+<h2 class="text-2xl font-bold text-slate-900 dark:text-white">Alex Morgan</h2>
+<p class="text-slate-500 dark:text-slate-400 font-medium">alex.morgan@example.com</p>
+</div>
+<div class="flex flex-wrap gap-3 justify-center md:justify-start">
+<span class="px-3 py-1 rounded-full bg-blue-50 dark:bg-blue-900/30 text-primary dark:text-blue-300 text-sm font-medium border border-blue-100 dark:border-blue-900/50">Product Designer</span>
+<span class="px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-sm font-medium border border-slate-200 dark:border-slate-700">San Francisco, CA</span>
+</div>
+</div>
+<div class="flex items-start">
+<button class="px-4 py-2 text-sm font-medium text-slate-600 dark:text-slate-300 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors">
+                            Edit Profile
+                        </button>
+</div>
+</div>
+<!-- Mode Control -->
+<div class="mb-10">
+<div class="flex flex-col items-center gap-6">
+<div class="bg-slate-100 dark:bg-[#0d141b] p-1.5 rounded-xl inline-flex w-full md:w-auto min-w-[320px] shadow-inner">
+<label class="flex-1 cursor-pointer">
+<input class="sr-only peer" name="mode" type="radio" value="personal"/>
+<div class="px-6 py-2.5 rounded-lg text-sm font-medium text-slate-500 dark:text-slate-400 peer-checked:bg-white dark:peer-checked:bg-[#1e2936] peer-checked:text-slate-900 dark:peer-checked:text-white peer-checked:shadow-sm transition-all text-center flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[20px]">person</span>
+                                    Personal
+                                </div>
+</label>
+<label class="flex-1 cursor-pointer">
+<input checked="" class="sr-only peer" name="mode" type="radio" value="agency"/>
+<div class="px-6 py-2.5 rounded-lg text-sm font-medium text-slate-500 dark:text-slate-400 peer-checked:bg-white dark:peer-checked:bg-[#1e2936] peer-checked:text-primary dark:peer-checked:text-primary peer-checked:shadow-sm transition-all text-center flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[20px] icon-fill">business</span>
+                                    Agency
+                                </div>
+</label>
+</div>
+<p class="text-sm text-slate-500 dark:text-slate-400 text-center max-w-md">
+                            Switching to Agency mode enables team collaboration, shared resources, and organization-wide analytics.
+                        </p>
+</div>
+</div>
+<!-- Agency Dashboard Section -->
+<div class="animate-fade-in space-y-6">
+<div class="flex items-center justify-between">
+<h3 class="text-xl font-bold text-slate-900 dark:text-white">Agency Management</h3>
+<span class="px-2.5 py-1 rounded-md bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 text-xs font-bold uppercase tracking-wide border border-green-200 dark:border-green-900">Active</span>
+</div>
+<!-- Current Agency Status Card -->
+<div class="bg-gradient-to-br from-white to-slate-50 dark:from-[#15202b] dark:to-[#101922] rounded-xl border border-slate-200 dark:border-slate-800 p-6 md:p-8 relative overflow-hidden shadow-sm">
+<!-- Decorative bg pattern -->
+<div class="absolute right-0 top-0 w-64 h-full bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-[0.03] dark:opacity-[0.05]" data-alt="Subtle geometric cube pattern texture"></div>
+<div class="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
+<div class="flex items-start gap-4">
+<div class="size-16 rounded-xl bg-primary/10 flex items-center justify-center text-primary border border-primary/20 shrink-0">
+<span class="material-symbols-outlined text-[32px]">apartment</span>
+</div>
+<div>
+<p class="text-sm font-medium text-slate-500 dark:text-slate-400 mb-1">Current Workspace</p>
+<h2 class="text-2xl font-bold text-slate-900 dark:text-white">Vertex Studio</h2>
+<div class="flex items-center gap-2 mt-2">
+<div class="flex -space-x-2">
+<div class="w-6 h-6 rounded-full border-2 border-white dark:border-[#15202b] bg-slate-200 bg-cover" data-alt="Team member avatar" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB1EynwK8V87GRDLsdBCEnZ4b6X11GTm-wQtrXwn0Div2cFd0ljESDX0ajQSpALaLI_wToIVkzksGEAjKeTt_ykulN6Sh7BBycz0ZqWmUxPu_7ndZEdH-P6eviBso4O0abgGhc4IpLi3UZFuLF03uf-FQ0_IqLCaBU-V56sFP_E1jju3AifMda4ekaajME5nVXkYqGLypRdEAe4YbfzI0FgEJ_SBBvfrNrHScKHCxop3jOkQzaF9iQQG7PGR1UIjRmhebLVQXy6Xp0')"></div>
+<div class="w-6 h-6 rounded-full border-2 border-white dark:border-[#15202b] bg-slate-300 bg-cover" data-alt="Team member avatar" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCfUBk1wAzvqCm3nDCOPDK8liFFYvoaOUYBB90lvt8sM5RpzaCgCcjYMHlmweZDDMVgJV1ro5EMhqPUOVEyPqoJcddb30g3Ku4ChD0V-gfEVTeE58lBaj532n5Cbml3xxlKPc-uuWeaiqeVJfBIsmihd7B3TbmZGFoROzbgCatFtU3aSBXrTNwYeO69fQQ6F1J1uEqyqFTBaGbcHYha2E2WVPTmjYITEtNIchQRUs5HzkALeJI4ujMAIgA7RljIvY5ln68fzmCgc08')"></div>
+<div class="w-6 h-6 rounded-full border-2 border-white dark:border-[#15202b] bg-slate-400 bg-cover" data-alt="Team member avatar" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAnhVJB5UnPSsKghBK-BI3vnZj4oGY2naY1CZeCPKqFDSJOCel2NqSpCeIo4VDmaUUR-ZGJr8dF-GqFoDeCy9M9G-Im5g2key7d5uy53k_tLuICaHLX6VJjCNSdcg3ai3IxVj6DIohBrIz2zmsKWM4M9H9c_9E5rlC36r9SB8uIsoftKex6RQjgN3owVlXPY4nSUyP0g4QQ85Y849KKBQVqsehUZQNzt64HLz-4b_nTNoXzaAtKHKBFQb63Wh760a4m3WfJvXCeZbw')"></div>
+</div>
+<span class="text-xs text-slate-500 dark:text-slate-400 font-medium">+8 members</span>
+</div>
+</div>
+</div>
+<div class="bg-white dark:bg-[#0d141b] rounded-lg p-4 border border-slate-200 dark:border-slate-800 shadow-sm min-w-[280px]">
+<p class="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Invite Code</p>
+<div class="flex items-center justify-between gap-3 bg-slate-50 dark:bg-[#1a2632] rounded border border-slate-200 dark:border-slate-700 px-3 py-2">
+<code class="font-mono text-lg font-bold text-primary tracking-wide">VTX-8829-AB</code>
+<button class="text-slate-400 hover:text-primary transition-colors p-1" title="Copy Code">
+<span class="material-symbols-outlined text-[20px]">content_copy</span>
+</button>
+</div>
+<p class="text-xs text-slate-400 mt-2">Share this code to invite new members.</p>
+</div>
+</div>
+</div>
+<!-- Actions Grid -->
+<div class="grid md:grid-cols-2 gap-6">
+<!-- Create Agency -->
+<div class="bg-white dark:bg-[#15202b] rounded-xl border border-slate-200 dark:border-slate-800 p-6 shadow-sm flex flex-col h-full">
+<div class="mb-5 flex items-center gap-3">
+<div class="p-2 bg-blue-50 dark:bg-blue-900/20 rounded-lg text-primary">
+<span class="material-symbols-outlined">add_business</span>
+</div>
+<div>
+<h4 class="text-lg font-bold text-slate-900 dark:text-white">Create New Agency</h4>
+<p class="text-sm text-slate-500 dark:text-slate-400">Establish a new workspace for your team.</p>
+</div>
+</div>
+<div class="mt-auto space-y-4">
+<div>
+<label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">Agency Name</label>
+<input class="w-full rounded-lg border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-[#0d141b] text-slate-900 dark:text-white placeholder:text-slate-400 focus:ring-2 focus:ring-primary/20 focus:border-primary text-sm px-3 py-2.5 shadow-sm transition-all" placeholder="e.g. Acme Design Co." type="text"/>
+</div>
+<button class="w-full py-2.5 px-4 bg-white dark:bg-transparent border border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300 font-medium rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800 hover:border-slate-400 transition-all flex items-center justify-center gap-2">
+                                    Create Agency
+                                </button>
+</div>
+</div>
+<!-- Join Agency -->
+<div class="bg-white dark:bg-[#15202b] rounded-xl border border-slate-200 dark:border-slate-800 p-6 shadow-sm flex flex-col h-full">
+<div class="mb-5 flex items-center gap-3">
+<div class="p-2 bg-indigo-50 dark:bg-indigo-900/20 rounded-lg text-indigo-600 dark:text-indigo-400">
+<span class="material-symbols-outlined">login</span>
+</div>
+<div>
+<h4 class="text-lg font-bold text-slate-900 dark:text-white">Join an Agency</h4>
+<p class="text-sm text-slate-500 dark:text-slate-400">Enter a code to join an existing team.</p>
+</div>
+</div>
+<div class="mt-auto space-y-4">
+<div>
+<label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">Invitation Code</label>
+<input class="w-full rounded-lg border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-[#0d141b] text-slate-900 dark:text-white placeholder:text-slate-400 focus:ring-2 focus:ring-primary/20 focus:border-primary text-sm px-3 py-2.5 shadow-sm transition-all" placeholder="e.g. XXX-0000-YY" type="text"/>
+</div>
+<button class="w-full py-2.5 px-4 bg-primary text-white font-medium rounded-lg hover:bg-blue-600 shadow-md shadow-blue-500/20 transition-all flex items-center justify-center gap-2">
+                                    Join Team
+                                </button>
+</div>
+</div>
+</div>
+<!-- Feedback Toast (Static representation) -->
+<div class="fixed bottom-8 right-8 animate-bounce-in">
+<div class="bg-slate-800 dark:bg-white text-white dark:text-slate-900 px-4 py-3 rounded-lg shadow-lg flex items-center gap-3">
+<span class="material-symbols-outlined text-green-400 dark:text-green-600 text-[20px]">check_circle</span>
+<span class="text-sm font-medium">Switched to Agency Mode</span>
+<button class="ml-2 text-slate-400 hover:text-white dark:hover:text-slate-900">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>
