@@ -1,5 +1,4 @@
 
-=======
 # MyTaskFlow 🚀
 
 MyTaskFlow is a lightweight, modern project and task management platform designed for **individuals and small agencies** who want clarity, speed, and control—without the overhead of enterprise tools.
